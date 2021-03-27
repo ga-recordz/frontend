@@ -11,6 +11,7 @@ function App() {
 			})
 			.then((data) => {
 				setArtists(data);
+				console.log(data);
 			})
 			.catch((error) => console.log(error));
 	}, []);
@@ -20,9 +21,9 @@ function App() {
 			{artists.map((artist) => {
 				return (
 					<div>
-						{/* <h1>{artist.artist}</h1>
-						<p>{artist.bio}</p> */}
-						{artist.name}
+						<h1>{artist.artist}</h1>
+						<p>{artist.bio}</p>
+						<h2>{artist.likes.length}</h2>
 					</div>
 				);
 			})}
