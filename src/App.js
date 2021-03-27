@@ -20,8 +20,9 @@ function App() {
 			{artists.map((artist) => {
 				return (
 					<div>
-						<h1>{artist.artist}</h1>
-						<p>{artist.bio}</p>
+						{/* <h1>{artist.artist}</h1>
+						<p>{artist.bio}</p> */}
+						{artist.name}
 					</div>
 				);
 			})}
