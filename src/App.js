@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
+	const [artists, setArtists] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:4000/artists')
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				setArtists(data);
+			})
+			.catch((error) => console.log(error));
+	}, []);
+
+	return (
 		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className='App-link'
-					href='https://reactjs.org'
-					target='_blank'
-					rel='noopener noreferrer'>
-					Learn React
-				</a>
-				<h1>Hello world </h1>
-			</header>
+			{artists.map((artist) => {
+				return (
+					<div>
+						<h1>{artist.artist}</h1>
+						<p>{artist.bio}</p>
+					</div>
+				);
+			})}
 		</div>
 	);
 }
