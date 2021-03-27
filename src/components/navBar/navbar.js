@@ -1,12 +1,11 @@
-import "./App.css";
-import navBar from "./components/navBar/navbar";
-import { AppBar } from "@material-ui/core";
+import React from "react";
 import { Link, Route, Switch, Redirect } from "react-router-dom";
+import { AppBar } from "@material-ui/core";
+// import "./navBar.css";
 
-function App() {
+const navBar = () => {
   return (
-    <div className="App">
-      <navBar />
+    <div>
       <AppBar position="sticky" color="">
         <nav className="navBar">
           <h1>
@@ -25,9 +24,8 @@ function App() {
           </h1>
         </nav>
       </AppBar>
-      <h1>hello world</h1>
     </div>
   );
-}
+};
 
-export default App;
+export default navBar;
