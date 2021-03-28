@@ -1,30 +1,30 @@
 body {
-  padding: 0px;
-  margin: 0;
+	padding: 5px;
+	margin: auto;
 }
 
-.navBar {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 0;
-  margin: 0;
-  background-color: rgba(218, 223, 225, 1);
+nav {
+	display: flex;
+	justify-content: space-around;
 }
 
-.navBar a {
-  padding: 14px;
-  text-decoration: none;
+.artistCard {
+	display: flex;
+	justify-content: space-around;
+	width: 20vw;
+	height: 5vh;
+	padding: 10px;
+	border: 1px solid grey;
+	border-radius: 10%;
+	text-align: center;
 }
 
-a {
-  background: linear-gradient(
-    to bottom,
-    var(--mainColor) 0%,
-    var(--mainColor) 100%
-  );
-  background-position: 0 100%;
-  background-repeat: repeat-x;
-  background-size: 3px 3px;
-  color: #000;
-  text-decoration: none;
+img {
+	border-radius: 50%;
+	width: 20%;
+}
+
+.microphoneIcon {
+	width: 30%;
+	height: 30%;
 }
