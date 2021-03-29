@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Navbar from "./Components/Navbar"
 
 function App() {
 	const [artists, setArtists] = useState([]);
@@ -14,6 +15,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<Navbar/>
 			<nav>
 				<h3>Favorites</h3>
 				<h3>Home</h3>
