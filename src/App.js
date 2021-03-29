@@ -30,7 +30,7 @@ function App() {
 								src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
 								alt='microphone to like'
 							/>
-							<p>1,245,365</p>
+							<p>{artist.likes.length}</p>
 						</div>
 					</div>
 				);
