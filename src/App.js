@@ -34,6 +34,9 @@ function App() {
 							/>
 							<p>{artist.likes.length}</p>
 						</div>
+						<div className='voteBox'>
+							<button className='voteButton'>Vote</button>
+						</div>
 					</div>
 				);
 			})}
