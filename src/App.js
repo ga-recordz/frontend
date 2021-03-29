@@ -1,31 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from "./Components/Navbar"
+import Navbar from './Components/Navbar/Navbar';
+import Top5 from './Components/Top5/Top5';
 
 function App() {
 	const [artists, setArtists] = useState([]);
+	const [top5, setTop5] = useState([]);
+
 	useEffect(() => {
 		fetch('http://localhost:4000/artists')
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
-				setArtists(data);
+				//Set artists and set the top 5 artists
+				let top = [];
+
+				data.sort((a, b) => {
+					return b.likes.length - a.likes.length;
+				});
+
+				for (let x = 0; x < 5; x++) {
+					top.push(data[x]);
+				}
+				setTop5(top);
+				let randomArtists = [];
+				randomArtists.length = data.length;
+				data.forEach((artist) => {
+					randomArtists.splice(
+						Math.floor(Math.floor(Math.random() * data.length)),
+						0,
+						artist
+					);
+				});
+				setArtists(randomArtists);
 			});
 	}, []);
 
 	return (
 		<div className='App'>
-			<Navbar/>
-			<nav>
-				<h3>Favorites</h3>
-				<h3>Home</h3>
-				<h3>SignIn</h3>
-			</nav>
-			<h1>Artists</h1>
+			<Navbar />
+			<Top5 top5={top5} />
 			{artists.map((artist) => {
 				return (
 					<div key={artist.artist} className='artistCard'>
-						<img src={artist.photo} alt={`${artist.artist}`} />
 						<h3>{artist.artist}</h3>
 						<div className='microphoneIcon'>
 							<img
