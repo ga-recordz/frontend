@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import Top5 from './Components/Top5/Top5';
+import ArtistDetailPage from './Pages/ArtistDetailPage';
+import HomePage from './Pages/HomePage';
 
 function App() {
 	const [artists, setArtists] = useState([]);
@@ -32,27 +34,20 @@ function App() {
 					);
 				});
 				setArtists(randomArtists);
+				console.log(artists);
 			});
 	}, []);
 
 	return (
 		<div className='App'>
 			<Navbar />
-			<Top5 top5={top5} />
-			{artists.map((artist) => {
-				return (
-					<div key={artist.artist} className='artistCard'>
-						<h3>{artist.artist}</h3>
-						<div className='microphoneIcon'>
-							<img
-								src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-								alt='microphone to like'
-							/>
-							<p>{artist.likes.length}</p>
-						</div>
-					</div>
-				);
-			})}
+			<Route exact path='/artists'>
+				<HomePage artists={artists} top5={top5} />
+			</Route>
+			<Route
+				path='/artist/:artistName'
+				render={() => <ArtistDetailPage artists={artists} />}
+			/>
 		</div>
 	);
 }

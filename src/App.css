@@ -1,6 +1,14 @@
 body {
+	width: 100vw;
+	height: 100vh;
 	padding: 5px;
 	margin: auto;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 nav {
@@ -8,23 +16,7 @@ nav {
 	justify-content: space-around;
 }
 
-.artistCard {
-	display: flex;
-	justify-content: space-around;
-	width: 20vw;
-	height: 5vh;
-	padding: 10px;
-	border: 1px solid grey;
-	border-radius: 10%;
-	text-align: center;
-}
-
 img {
 	border-radius: 50%;
 	width: 20%;
-}
-
-.microphoneIcon {
-	width: 30%;
-	height: 30%;
 }
