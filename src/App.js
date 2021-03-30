@@ -1,44 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Navbar from "./Components/Navbar"
+import { useState, useEffect } from "react";
+import "./App.css";
+import Navbar from "./Components/Navbar/Navbar";
+import { Link, Route, Switch } from "react-router-dom";
+import ArtistDetail from "./Components/ArtistDetail/ArtistDetail";
+import Artist from "./Components/Artist/Artist";
+import Home from "./Components/Home/Home";
 
 function App() {
-	const [artists, setArtists] = useState([]);
-	useEffect(() => {
-		fetch('http://localhost:4000/artists')
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setArtists(data);
-			});
-	}, []);
-
-	return (
-		<div className='App'>
-			<Navbar/>
-			<nav>
-				<h3>Favorites</h3>
-				<h3>Home</h3>
-				<h3>SignIn</h3>
-			</nav>
-			<h1>Artists</h1>
-			{artists.map((artist) => {
-				return (
-					<div key={artist.artist} className='artistCard'>
-						<img src={artist.photo} alt={`${artist.artist}`} />
-						<h3>{artist.artist}</h3>
-						<div className='microphoneIcon'>
-							<img
-								src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-								alt='microphone to like'
-							/>
-							<p>{artist.likes.length}</p>
-						</div>
-					</div>
-				);
-			})}
-		</div>
-	);
+  return (
+    <div className="App">
+      <Navbar />
+      <Switch>
+        <Route
+          path="/artists/:id"
+          render={(routerProps) => <ArtistDetail match={routerProps.match} />}
+        />
+        <Route path="/artists" render={() => <Artist />} />
+        <Route path="/" render={() => <Home />} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
