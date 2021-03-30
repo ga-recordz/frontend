@@ -8,7 +8,7 @@ function Artist() {
 
 	useEffect(() => {
 		fetch('http://localhost:4000/artists')
-			.then((res) => res.json())
+			.then((res) => res.json()) 
 			.then((data) => {
 				//Set artists and set the top 5 artists
 				let top = [];
@@ -51,6 +51,7 @@ function Artist() {
 								/>
 								<p>{artist.likes.length}</p>
 								<p>{artist._id}</p>
+								<p>hello</p>
 							</div>
 						</Link>
 					</div>

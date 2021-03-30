@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useParmas } from "react";
 import "./ArtistDetail.css";
 import React from "react";
 
