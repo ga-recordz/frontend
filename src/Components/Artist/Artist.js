@@ -10,7 +10,7 @@ function Artist() {
 		fetch('http://localhost:4000/artists')
 			.then((res) => res.json())
 			.then((data) => {
-				//Set artists and set the top 5 artists
+				// Set artists and set the top 5 artists
 				let top = [];
 
 				data.sort((a, b) => {
@@ -41,7 +41,7 @@ function Artist() {
 			<div className='container'>
 				{artists.map((artist) => {
 					return (
-						<div key={artist.artist} className='artistCard'>
+						<div key={artist.artist}>
 							<Link to={`/artists/${artist._id}`} key={artist._id}>
 								<div className='card'>
 									<div className='card-image'>

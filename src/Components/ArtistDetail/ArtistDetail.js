@@ -30,6 +30,7 @@ const ArtistDetail = ({ match }) => {
 			{/* <h1>hello world</h1> */}
 			<h1>{details.artist}</h1>
 			<p>{details.bio}</p>
+			{/* <p>{details.album.likes}</p> */}
 		</div>
 	);
 };
