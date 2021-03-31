@@ -8,9 +8,9 @@ function Artist() {
 
 	useEffect(() => {
 		fetch('http://localhost:4000/artists')
-			.then((res) => res.json()) 
+			.then((res) => res.json())
 			.then((data) => {
-				//Set artists and set the top 5 artists
+				// Set artists and set the top 5 artists
 				let top = [];
 
 				data.sort((a, b) => {
@@ -38,25 +38,25 @@ function Artist() {
 	return (
 		<div className='App'>
 			<h1>Artists</h1>
-			{artists.map((artist) => {
-				return (
-					<div key={artist.artist} className='artistCard'>
-						<Link to={`/artists/${artist._id}`} key={artist._id}>
-							<img src={artist.photo} alt={`${artist.artist}`} />
-							<h3>{artist.artist}</h3>
-							<div className='microphoneIcon'>
-								<img
-									src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-									alt='microphone to like'
-								/>
-								<p>{artist.likes.length}</p>
-								<p>{artist._id}</p>
-								<p>hello</p>
-							</div>
-						</Link>
-					</div>
-				);
-			})}
+			<div className='container'>
+				{artists.map((artist) => {
+					return (
+						<div key={artist.artist}>
+							<Link to={`/artists/${artist._id}`} key={artist._id}>
+								<div className='card'>
+									<div className='card-image'>
+										<img src={artist.photo} alt={`${artist.artist}`} />
+										<h1>{artist.artist}</h1>
+
+										<h4>{artist.likes.length}</h4>
+										<p>{artist._id}</p>
+									</div>
+								</div>
+							</Link>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

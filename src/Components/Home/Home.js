@@ -3,7 +3,7 @@ import Top5 from '../Top5/Top5';
 
 const Home = () => {
 	return (
-		<div>
+		<div className='home-container'>
 			<Top5 />
 		</div>
 	);
