@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ArtistDetail.css';
+import Datafrom from '../Dataform/Dataform'
 
 const ArtistDetail = ({ match }) => {
 	const [details, setDetails] = useState([]);
@@ -30,6 +31,7 @@ const ArtistDetail = ({ match }) => {
 			{/* <h1>hello world</h1> */}
 			<h1>{details.artist}</h1>
 			<h1>{details.bio}</h1>
+			<Dataform/>
 		</div>
 	);
 };

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import ArtistDetail from './Components/ArtistDetail/ArtistDetail';
 import Artist from './Components/Artist/Artist';
 import Home from './Components/Home/Home';
+// import Dataform from "./Components/Dataform/Dataform"
 
 function App() {
 	return (
