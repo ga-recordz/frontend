@@ -12,7 +12,7 @@ const ArtistDetail = ({ match }) => {
 		const id = match.params.id;
 		console.log(id);
 		console.log(artistName);
-		fetch(`http://localhost:4000/artists/${id}`)
+		fetch(`http://localhost:5000/artists/${id}`)
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res);
