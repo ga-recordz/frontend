@@ -7,7 +7,7 @@ function Artist() {
 	const [top5, setTop5] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:5000/artists')
+		fetch('http://localhost:4000/artists')
 			.then((res) => res.json())
 			.then((data) => {
 				//Set artists and set the top 5 artists
@@ -21,17 +21,22 @@ function Artist() {
 					top.push(data[x]);
 				}
 				setTop5(top);
-				let randomArtists = [];
-				randomArtists.length = data.length;
-				data.forEach((artist) => {
-					randomArtists.splice(
-						Math.floor(Math.floor(Math.random() * data.length)),
-						0,
-						artist
-					);
-				});
-				setArtists(randomArtists);
+				// let randomArtists = [];
+				// randomArtists.length = data.length;
+				// console.log(data);
+				// let randomArtists = [];
+				// let data2 = data
+				// data.forEach((artist) => {
+				// 	randomArtists.splice(
+				// 		Math.floor(Math.floor(Math.random() * data.length)),
+				// 		0,
+				// 		artist
+				// 	);
+				// });
+				// setArtists(randomArtists);
+				setArtists(data);
 				console.log(artists);
+				console.log(data);
 			});
 	}, []);
 
