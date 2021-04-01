@@ -6,7 +6,11 @@ function DebateSection({ debates }) {
 		<div className='debateSection'>
 			{debates
 				? debates.map((debate) => {
-						return <p>{debate}</p>;
+						return (
+							<div key={`${debate}`}>
+								<p>{debate}</p>
+							</div>
+						);
 				  })
 				: null}
 		</div>

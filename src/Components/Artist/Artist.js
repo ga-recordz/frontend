@@ -20,7 +20,7 @@ function Artist() {
 				for (let x = 0; x < 5; x++) {
 					top.push(data[x]);
 				}
-				setTop5(top);
+				// setTop5(top);
 				// let randomArtists = [];
 				// randomArtists.length = data.length;
 				// console.log(data);
@@ -35,8 +35,6 @@ function Artist() {
 				// });
 				// setArtists(randomArtists);
 				setArtists(data);
-				console.log(artists);
-				console.log(data);
 			});
 	}, []);
 
@@ -56,7 +54,6 @@ function Artist() {
 								/>
 								<p>{artist.likes.length}</p>
 								<p>{artist._id}</p>
-								<p>hello</p>
 							</div>
 						</Link>
 					</div>

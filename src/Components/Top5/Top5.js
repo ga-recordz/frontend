@@ -30,7 +30,6 @@ function Top5() {
 					);
 				});
 				setArtists(randomArtists);
-				console.log(artists);
 			});
 	}, []);
 	let rank = 1;
