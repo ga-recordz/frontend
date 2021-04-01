@@ -20,43 +20,49 @@ function Artist() {
 				for (let x = 0; x < 5; x++) {
 					top.push(data[x]);
 				}
-				setTop5(top);
-				let randomArtists = [];
-				randomArtists.length = data.length;
-				data.forEach((artist) => {
-					randomArtists.splice(
-						Math.floor(Math.floor(Math.random() * data.length)),
-						0,
-						artist
-					);
-				});
-				setArtists(randomArtists);
-				console.log(artists);
+				// setTop5(top);
+				// let randomArtists = [];
+				// randomArtists.length = data.length;
+				// console.log(data);
+				// let randomArtists = [];
+				// let data2 = data
+				// data.forEach((artist) => {
+				// 	randomArtists.splice(
+				// 		Math.floor(Math.floor(Math.random() * data.length)),
+				// 		0,
+				// 		artist
+				// 	);
+				// });
+				// setArtists(randomArtists);
+				setArtists(data);
 			});
 	}, []);
 
 	return (
-		<div className='App'>
+		<div className='container'>
 			<h1>Artists</h1>
-			<div className='container'>
-				{artists.map((artist) => {
-					return (
-						<div key={artist.artist}>
-							<Link to={`/artists/${artist._id}`} key={artist._id}>
-								<div className='card'>
-									<div className='card-image'>
-										<img src={artist.photo} alt={`${artist.artist}`} />
-										<h1>{artist.artist}</h1>
-
-										<h4>{artist.likes.length}</h4>
+			{artists.map((artist) => {
+				return (
+					<div key={artist.artist} className='artistCard'>
+						<Link to={`/artists/${artist._id}`} key={artist._id}>
+							<div className='card'>
+								<div className='card-image'>
+									<img src={artist.photo} alt={`${artist.artist}`} />
+									<h3>{artist.artist}</h3>
+									<div className='microphoneIcon'>
+										<img
+											src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
+											alt='microphone to like'
+										/>
+										<p>{artist.likes.length}</p>
 										<p>{artist._id}</p>
 									</div>
 								</div>
-							</Link>
-						</div>
-					);
-				})}
-			</div>
+							</div>
+						</Link>
+					</div>
+				);
+			})}
 		</div>
 	);
 }
