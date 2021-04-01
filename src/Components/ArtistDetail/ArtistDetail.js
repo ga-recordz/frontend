@@ -30,7 +30,7 @@ const ArtistDetail = ({ match }) => {
 	return (
 		<div className='details-container'>
 			<h1>{artist.artist}</h1>
-			<h1>{artist.bio}</h1>
+			<p>{artist.bio}</p>
 			<DebateBox refreshDebates={refreshDebates} />
 			<DebateSection debates={debates} refreshDebates={refreshDebates} />
 		</div>

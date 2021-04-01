@@ -39,30 +39,32 @@ function Artist() {
 	}, []);
 
 	return (
-		<div className='container'>
+		<div>
 			<h1>Artists</h1>
-			{artists.map((artist) => {
-				return (
-					<div key={artist.artist} className='artistCard'>
-						<Link to={`/artists/${artist._id}`} key={artist._id}>
-							<div className='card'>
-								<div className='card-image'>
-									<img src={artist.photo} alt={`${artist.artist}`} />
-									<h3>{artist.artist}</h3>
-									<div className='microphoneIcon'>
-										<img
-											src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-											alt='microphone to like'
-										/>
-										<p>{artist.likes.length}</p>
-										<p>{artist._id}</p>
+			<div className='container'>
+				{artists.map((artist) => {
+					return (
+						<div key={artist.artist} className='artistCard'>
+							<Link to={`/artists/${artist._id}`} key={artist._id}>
+								<div className='card'>
+									<div className='card-image'>
+										<img src={artist.photo} alt={`${artist.artist}`} />
+										<h3>{artist.artist}</h3>
+										<div className='microphoneIcon'>
+											<img
+												src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
+												alt='microphone to like'
+											/>
+											<p>{artist.likes.length}</p>
+											<p>{artist._id}</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						</Link>
-					</div>
-				);
-			})}
+							</Link>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }
