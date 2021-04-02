@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 
-const DebateForm = ({ refreshDebates }) => {
+const DebateForm = ({ refreshDebates, token }) => {
 	const [debate, setDebate] = useState('');
 	const { id } = useParams();
 
@@ -13,9 +13,18 @@ const DebateForm = ({ refreshDebates }) => {
 	const submitDebate = (event) => {
 		event.preventDefault();
 		axios
-			.put(`http://localhost:4000/artists/${id}`, {
-				debate,
-			})
+			.post(
+				`http://localhost:4000/artists/${id}`,
+				{
+					debate: debate,
+					artistID: id,
+				},
+				{
+					headers: {
+						Authorization: 'Bearer ' + token,
+					},
+				}
+			)
 			.then((res) => {
 				refreshDebates(res.data.artist.debates);
 			})

@@ -55,6 +55,7 @@ function Artist() {
 												src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
 												alt='microphone to like'
 											/>
+
 											<p>Likes: {artist.likes.length}</p>
 											<p>Record label: {artist.recordLabel}</p>
 											<p>

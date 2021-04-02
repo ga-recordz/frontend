@@ -4,7 +4,7 @@ import './ArtistDetail.css';
 import DebateBox from '../DebateBox/DebateBox';
 import DebateSection from '../DebateSection/DebateSection';
 
-const ArtistDetail = ({ match }) => {
+const ArtistDetail = ({ match, token }) => {
 	const [artist, setArtist] = useState([]);
 	const [debates, setDebates] = useState([]);
 
@@ -63,9 +63,13 @@ const ArtistDetail = ({ match }) => {
 					: null}
 				<br />
 			</div>
-
-			<DebateBox refreshDebates={refreshDebates} />
-			<DebateSection debates={debates} refreshDebates={refreshDebates} />
+  			<DebateBox refreshDebates={refreshDebates} token={token} />
+			<DebateSection
+				debates={debates}
+				refreshDebates={refreshDebates}
+				artistID={match.params.id}
+				token={token}
+			/>
 		</div>
 	);
 };
