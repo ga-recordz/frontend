@@ -11,7 +11,7 @@ const ArtistDetail = ({ match, token }) => {
 	useEffect(() => {
 		const id = match.params.id;
 
-		fetch(`http://localhost:4000/artists/${id}`)
+		fetch(`https://goat-5-rappers.herokuapp.com/artists/${id}`)
 			.then((res) => res.json())
 			.then((res) => {
 				setArtist(res);
@@ -37,7 +37,7 @@ const ArtistDetail = ({ match, token }) => {
 				{artist.album
 					? artist.album.map((album) => {
 							return (
-								<div>
+								<div key={album.name}>
 									<li>
 										{album.name} <br /> Year Released:
 										{album.yearReleased} <br /> Albums Sold: {album.albumsSold}
@@ -51,9 +51,9 @@ const ArtistDetail = ({ match, token }) => {
 			<h2>Awards</h2>
 			<div>
 				{artist.awards
-					? artist.awards.map((awards) => {
+					? artist.awards.map((awards, index) => {
 							return (
-								<div>
+								<div key={awards[index]}>
 									Grammys: {awards.grammys} <br /> Billboard Music Awards Fame:
 									{awards.billBoardMusicAwards}
 								</div>

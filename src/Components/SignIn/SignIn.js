@@ -16,7 +16,7 @@ const SignIn = (setToken) => {
 	//  so somehow get the correct user object and the token when the user signs in
 	const signInUser = () => {
 		axios
-			.post('http://localhost:4000/signin', {
+			.post('https://goat-5-rappers.herokuapp.com/signin', {
 				email: email,
 				password: password,
 			})

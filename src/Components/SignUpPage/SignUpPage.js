@@ -22,7 +22,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
-			.post('http://localhost:4000/signup', {
+			.post('https://goat-5-rappers.herokuapp.com/signup', {
 				email: email,
 				password: password,
 				userName: userName,
@@ -33,7 +33,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 			})
 			.then((user) => {
 				axios
-					.post('http://localhost:4000/signin', {
+					.post('https://goat-5-rappers.herokuapp.com/signin', {
 						email: user.email,
 						password: password,
 					})
