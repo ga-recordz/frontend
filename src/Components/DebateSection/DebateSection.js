@@ -3,32 +3,29 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './DebateSection.css';
 
-function DebateSection({ debates, refreshDebates, artistID }) {
+function DebateSection({ debates, refreshDebates, artistID, token }) {
 	const [editedDebate, setEditedDebate] = useState('');
 	const { id } = useParams();
 	const [isEditing, setIsEditing] = useState(false);
 
 	//------------------DELETE DEBATE-------------------------------------
 	const deleteDebate = (debateID) => {
-		console.log(debateID);
-		console.log(artistID);
-		// 	axios
-		// 		.delete(`http://localhost:4000/artists/${artistID}/${debateID}`)
-		// 		.then((res) => {
-		// 			console.log(res);
-		// 			// refreshDebates(res.data.artist.debates);
-		// 		})
-		// 		.catch(console.error);
-		fetch(`http://localhost:4000/artists/${artistID}/${debateID}`, {
-			method: 'delete',
-		})
-			.then((res) => res.json())
-			.then((data) => refreshDebates(data.artist.debates));
+		axios
+			.delete(`http://localhost:4000/artists/${artistID}/${debateID}`, {
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
+			})
+			.then((res) => {
+				refreshDebates(res.data.artist.debates);
+			})
+			.catch(console.error);
 	};
+
 	//-------------------END DELETE DEBATE-------------------------------------
 
 	// const changeIsEditing = () => {
-
+	// for changing the input box into the actual debate <p></p>
 	// }
 
 	const editDebate = (event) => {
@@ -37,9 +34,17 @@ function DebateSection({ debates, refreshDebates, artistID }) {
 
 	const submitEditedDebate = (debateID) => {
 		axios
-			.patch(`http://localhost:4000/artists/${artistID}/${debateID}`, {
-				debate: editedDebate,
-			})
+			.patch(
+				`http://localhost:4000/artists/${artistID}/${debateID}`,
+				{
+					debate: editedDebate,
+				},
+				{
+					headers: {
+						Authorization: 'Bearer ' + token,
+					},
+				}
+			)
 			.then((res) => refreshDebates(res.data.artist.debates))
 			.catch(console.error);
 		setEditedDebate('');
