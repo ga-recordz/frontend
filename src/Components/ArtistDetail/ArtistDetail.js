@@ -29,8 +29,39 @@ const ArtistDetail = ({ match, token }) => {
 
 	return (
 		<div className='details-container'>
+			<img src={artist.photo} alt={artist.id} />
 			<h1>{artist.artist}</h1>
 			<p>{artist.bio}</p>
+			<h2>Albums</h2>
+			<div className='albums'>
+				{artist.album
+					? artist.album.map((album) => {
+							return (
+								<div>
+									<li>
+										{album.name} <br /> Year Released:
+										{album.yearReleased} <br /> Albums Sold: {album.albumsSold}
+									</li>
+									<br />
+								</div>
+							);
+					  })
+					: null}
+			</div>
+			<h2>Awards</h2>
+			<div>
+				{artist.awards
+					? artist.awards.map((awards) => {
+							return (
+								<div>
+									Grammys: {awards.grammys} <br /> Billboard Music Awards Fame:
+									{awards.billBoardMusicAwards}
+								</div>
+							);
+					  })
+					: null}
+				<br />
+			</div>
 			<DebateBox refreshDebates={refreshDebates} token={token} />
 			<DebateSection
 				debates={debates}
