@@ -6,7 +6,7 @@ import './Navbar.css';
 const NavBar = ({ token }) => {
 	return (
 		<div>
-			<AppBar position='sticky' color=''>
+			<AppBar position='sticky' color='default'>
 				<nav className='navBar'>
 					<h1>
 						<Link to='/'>Home</Link>

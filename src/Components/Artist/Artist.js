@@ -7,7 +7,7 @@ function Artist() {
 	const [top5, setTop5] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:4000/artists')
+		fetch('https://goat-5-rappers.herokuapp.com/artists')
 			.then((res) => res.json())
 			.then((data) => {
 				// Set artists and set the top 5 artists
@@ -57,10 +57,10 @@ function Artist() {
 											/>
 											<p>Likes: {artist.likes.length}</p>
 											<p>Record label: {artist.recordLabel}</p>
-											<p>
+											<div>
 												Years Active: {artist.yearsActive}
 												<p>Genre: {artist.genre}</p>
-											</p>
+											</div>
 										</div>
 									</div>
 								</div>
