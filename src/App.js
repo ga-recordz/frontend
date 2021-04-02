@@ -1,42 +1,60 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from "./Components/Navbar"
+import React, { useState } from 'react';
+import Navbar from './Components/Navbar/Navbar';
+import { Route, Switch } from 'react-router-dom';
+import ArtistDetail from './Components/ArtistDetail/ArtistDetail';
+import Artist from './Components/Artist/Artist';
+import Home from './Components/Home/Home';
+import SignUpPage from './Components/SignUpPage/SignUpPage';
+import SignOutPage from './Components/SignOutPage/SignOutPage';
+import SignIn from './Components/SignIn/SignIn';
 
 function App() {
-	const [artists, setArtists] = useState([]);
-	useEffect(() => {
-		fetch('http://localhost:4000/artists')
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setArtists(data);
-			});
-	}, []);
+	const [user, setUser] = useState(null);
+	const [token, setToken] = useState(null);
 
 	return (
-		<div className='App'>
-			<Navbar/>
-			<nav>
-				<h3>Favorites</h3>
-				<h3>Home</h3>
-				<h3>SignIn</h3>
-			</nav>
-			<h1>Artists</h1>
-			{artists.map((artist) => {
-				return (
-					<div key={artist.artist} className='artistCard'>
-						<img src={artist.photo} alt={`${artist.artist}`} />
-						<h3>{artist.artist}</h3>
-						<div className='microphoneIcon'>
-							<img
-								src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-								alt='microphone to like'
+		<div className='App1'>
+			<div className='Main'>
+				<Navbar token={token} />
+				<Switch>
+					<Route
+						path='/artists/:id'
+						render={(routerProps) => (
+							<ArtistDetail match={routerProps.match} token={token} />
+						)}
+					/>
+					<Route path='/artists' render={() => <Artist />} />
+					<Route
+						path='/signup'
+						render={() => (
+							<SignUpPage
+								user={user}
+								setUser={setUser}
+								setToken={setToken}
+								token={token}
 							/>
-							<p>{artist.likes.length}</p>
-						</div>
-					</div>
-				);
-			})}
+						)}
+					/>
+					<Route
+						path='/signout'
+						render={() => (
+							<SignOutPage
+								setUser={setUser}
+								setToken={setToken}
+								token={token}
+							/>
+						)}
+					/>
+					<Route
+						path='/signin'
+						render={() => (
+							<SignIn setUser={setUser} setToken={setToken} token={token} />
+						)}
+					/>
+					<Route path='/' render={() => <Home />} />
+				</Switch>
+			</div>
 		</div>
 	);
 }
