@@ -13,8 +13,9 @@ const DebateForm = ({ refreshDebates }) => {
 	const submitDebate = (event) => {
 		event.preventDefault();
 		axios
-			.put(`http://localhost:4000/artists/${id}`, {
-				debate,
+			.post(`http://localhost:4000/artists/${id}`, {
+				debate: debate,
+				artistID: id,
 			})
 			.then((res) => {
 				refreshDebates(res.data.artist.debates);

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import ArtistDetail from './Components/ArtistDetail/ArtistDetail';
 import Artist from './Components/Artist/Artist';
 import Home from './Components/Home/Home';
+import SignUpPage from './Components/SignUpPage/SignUpPage';
 // import Dataform from "./Components/Dataform/Dataform"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 						render={(routerProps) => <ArtistDetail match={routerProps.match} />}
 					/>
 					<Route path='/artists' render={() => <Artist />} />
+					<Route path='/signup' render={() => <SignUpPage />} />
 					<Route path='/' render={() => <Home />} />
 				</Switch>
 			</div>

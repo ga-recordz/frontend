@@ -16,6 +16,7 @@ const ArtistDetail = ({ match }) => {
 			.then((res) => {
 				setArtist(res);
 				setDebates(res.debates);
+				console.log(res);
 			});
 	}, []);
 
@@ -32,7 +33,11 @@ const ArtistDetail = ({ match }) => {
 			<h1>{artist.artist}</h1>
 			<p>{artist.bio}</p>
 			<DebateBox refreshDebates={refreshDebates} />
-			<DebateSection debates={debates} refreshDebates={refreshDebates} />
+			<DebateSection
+				debates={debates}
+				refreshDebates={refreshDebates}
+				artistID={match.params.id}
+			/>
 		</div>
 	);
 };
