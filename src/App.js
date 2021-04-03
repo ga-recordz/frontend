@@ -12,6 +12,7 @@ import SignIn from './Components/SignIn/SignIn';
 function App() {
 	const [user, setUser] = useState(null);
 	const [token, setToken] = useState(null);
+	const [goat5URL, setGoat5URL] = useState(null);
 
 	return (
 		<div className='App1'>
@@ -43,6 +44,7 @@ function App() {
 								setUser={setUser}
 								setToken={setToken}
 								token={token}
+								user={user}
 							/>
 						)}
 					/>

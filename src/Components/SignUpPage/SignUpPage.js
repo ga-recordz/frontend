@@ -22,7 +22,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
-			.post('https://goat-5-rappers.herokuapp.com/signup', {
+			.post('http://localhost:4000/signup', {
 				email: email,
 				password: password,
 				userName: userName,
@@ -33,18 +33,26 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 			})
 			.then((user) => {
 				axios
-					.post('https://goat-5-rappers.herokuapp.com/signin', {
+					.post('http://localhost:4000/signin', {
 						email: user.email,
 						password: password,
 					})
 					.then((res) => {
+						console.log(user);
 						setToken(res.data.token);
 					});
 			});
 	};
 
 	if (token) {
-		return <SignOutPage />;
+		return (
+			<SignOutPage
+				setUser={setUser}
+				setToken={setToken}
+				token={token}
+				user={user}
+			/>
+		);
 	} else {
 		return (
 			<div className='signInView'>

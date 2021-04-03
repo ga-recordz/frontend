@@ -11,14 +11,11 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
 	//------------------DELETE DEBATE-------------------------------------
 	const deleteDebate = (debateID) => {
 		axios
-			.delete(
-				`https://goat-5-rappers.herokuapp.com/artists/${artistID}/${debateID}`,
-				{
-					headers: {
-						Authorization: 'Bearer ' + token,
-					},
-				}
-			)
+			.delete(`http://localhost:4000/artists/${artistID}/${debateID}`, {
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
+			})
 			.then((res) => {
 				refreshDebates(res.data.artist.debates);
 			})
@@ -38,7 +35,7 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
 	const submitEditedDebate = (debateID) => {
 		axios
 			.patch(
-				`https://goat-5-rappers.herokuapp.com/artists/${artistID}/${debateID}`,
+				`http://localhost:4000/artists/${artistID}/${debateID}`,
 				{
 					debate: editedDebate,
 				},

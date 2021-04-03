@@ -1,17 +1,20 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const SignOutPage = ({ setUser, setToken, token }) => {
-	const logOutUser = () => {
+const SignOutPage = ({ setUser, setToken, token, user }) => {
+	const logOutUser = (event) => {
+		event.preventDefault();
 		setUser(null);
 		setToken(null);
 	};
+
+	console.log(user);
 
 	if (token) {
 		return (
 			<div>
 				<h1>About That Time??</h1>
-				<button onClick={logOutUser}>Sign Out</button>
+				<button onClick={(event) => logOutUser(event)}>Sign Out</button>
 			</div>
 		);
 	} else {

@@ -21,6 +21,9 @@ const NavBar = ({ token }) => {
 							<Link to='/signup'> SignUp/Login </Link>
 						)}
 					</h1>
+					<h1>
+						<Link to='/signin'>Login</Link>
+					</h1>
 				</nav>
 			</AppBar>
 		</div>
