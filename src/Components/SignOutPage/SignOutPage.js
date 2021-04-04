@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import "./SignOutPage.css"
 
 const SignOutPage = ({ setUser, setToken, token, user }) => {
 	const logOutUser = (event) => {
