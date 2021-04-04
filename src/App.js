@@ -8,6 +8,7 @@ import Home from './Components/Home/Home';
 import SignUpPage from './Components/SignUpPage/SignUpPage';
 import SignOutPage from './Components/SignOutPage/SignOutPage';
 import SignIn from './Components/SignIn/SignIn';
+import UserProfile from './Components/UserProfile/UserProfile';
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -16,13 +17,17 @@ function App() {
 	return (
 		<div className='App1'>
 			<div className='Main'>
-				<Navbar token={token} />
+				<Navbar token={token} user={user} />
 				<Switch>
 					<Route
 						path='/artists/:id'
 						render={(routerProps) => (
 							<ArtistDetail match={routerProps.match} token={token} />
 						)}
+					/>
+					<Route
+						path='/userProfile'
+						render={() => <UserProfile token={token} user={user} />}
 					/>
 					<Route path='/artists' render={() => <Artist />} />
 					<Route
@@ -50,7 +55,12 @@ function App() {
 					<Route
 						path='/signin'
 						render={() => (
-							<SignIn setUser={setUser} setToken={setToken} token={token} />
+							<SignIn
+								setUser={setUser}
+								setToken={setToken}
+								token={token}
+								user={user}
+							/>
 						)}
 					/>
 					<Route path='/' render={() => <Home />} />

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import UserProfile from '../UserProfile/UserProfile';
+import { Redirect } from 'react-router';
 
-const SignIn = ({ setToken, setUser, token }) => {
+const SignIn = ({ setToken, setUser, token, user }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [userID, setUserID] = useState('');
 	const changeEmail = (event) => {
 		setEmail(event.target.value);
 	};
@@ -25,31 +25,18 @@ const SignIn = ({ setToken, setUser, token }) => {
 			})
 			.then((tokenData) => {
 				setToken(tokenData.data.token);
-				// console.log(tokenData.data.token);
-				setUser(tokenData.data.user._id);
-				console.log(tokenData.data.user._id);
 
 				//Get USER
 				fetch(`http://localhost:4000/user/${tokenData.data.user._id}`)
 					.then((res) => res.json())
 					.then((user) => {
-						console.log(user);
+						setUser(user);
 					});
-
-				// axios
-				// 	.get('http://localhost:4000/user', {
-				// 		data: { userID: tokenData.data.user._id },
-				// 	})
-				// 	.then((res) => {
-				// 		setUser(res.data);
-				// 		console.log(res.data);
-				// 	})
-				// 	.catch(console.error);
 			});
 	};
 
 	if (token) {
-		return <Redirect to='/' />;
+		return <Redirect to='/userProfile' token={token} user={user} />;
 	} else {
 		return (
 			<div>

@@ -8,8 +8,6 @@ const SignOutPage = ({ setUser, setToken, token, user }) => {
 		setToken(null);
 	};
 
-	console.log(user);
-
 	if (token) {
 		return (
 			<div>

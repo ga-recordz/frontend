@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SignOutPage from '../SignOutPage/SignOutPage';
 
@@ -19,6 +20,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 		setPassword(event.target.value);
 	};
 
+	//sign up the user
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
@@ -30,7 +32,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 			.then((user) => {
 				setUser(user.data);
 				return user.data;
-			})
+			}) //Sign in the user
 			.then((user) => {
 				axios
 					.post(`http://localhost:4000/signin`, {
@@ -38,7 +40,6 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 						password: password,
 					})
 					.then((res) => {
-						console.log(user);
 						setToken(res.data.token);
 					});
 			});
@@ -76,6 +77,9 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 					<input type='text' name='password' onChange={changePassword} />
 					<br />
 					<button onClick={(event) => signUpUser(event)}>Sign Up!</button>
+					<div>
+						Already apart of the Movement? <Link to='/signin'>Login Here!</Link>
+					</div>
 				</form>
 			</div>
 		);
