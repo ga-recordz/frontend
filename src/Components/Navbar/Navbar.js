@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppBar } from '@material-ui/core';
 import './Navbar.css';
 
-const NavBar = ({ token }) => {
+const NavBar = ({ token, user }) => {
 	return (
 		<div>
 			<AppBar position='sticky' color='default'>
@@ -14,6 +14,12 @@ const NavBar = ({ token }) => {
 					<h1>
 						<Link to='/artists'>Artists</Link>
 					</h1>
+					{user ? (
+						<h1>
+							<Link to='/userProfile'>{`${user.userName}'s Profile`}</Link>
+						</h1>
+					) : null}
+
 					<h1>
 						{token ? (
 							<Link to='/signout'>Sign Out</Link>
