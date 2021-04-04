@@ -35,10 +35,10 @@ const ArtistDetail = ({ match, token }) => {
 			<h2>Albums</h2>
 			<div className='albums'>
 				{artist.album
-					? artist.album.map((album) => {
+					? artist.album.map((album, index) => {
 							return (
 								<div key={album.name}>
-									<li>
+									<li key={`${index}`}>
 										{album.name} <br /> Year Released:
 										{album.yearReleased} <br /> Albums Sold: {album.albumsSold}
 									</li>
@@ -53,7 +53,7 @@ const ArtistDetail = ({ match, token }) => {
 				{artist.awards
 					? artist.awards.map((awards, index) => {
 							return (
-								<div key={awards[index]}>
+								<div key={`${awards[index]}`}>
 									Grammys: {awards.grammys} <br /> Billboard Music Awards Fame:
 									{awards.billBoardMusicAwards}
 								</div>

@@ -19,7 +19,7 @@ const SignIn = ({ setToken, setUser, token }) => {
 	const signInUser = (event) => {
 		event.preventDefault();
 		axios
-			.post('http://localhost:4000/signin', {
+			.post(`http://localhost:4000/signin`, {
 				email: email,
 				password: password,
 			})
@@ -29,9 +29,12 @@ const SignIn = ({ setToken, setUser, token }) => {
 				setUser(tokenData.data.user._id);
 				console.log(tokenData.data.user._id);
 
-				fetch(
-					`http://localhost:4000/user/${tokenData.data.user._id}`
-				).then((res) => console.log(res.body));
+				//Get USER
+				fetch(`http://localhost:4000/user/${tokenData.data.user._id}`)
+					.then((res) => res.json())
+					.then((user) => {
+						console.log(user);
+					});
 
 				// axios
 				// 	.get('http://localhost:4000/user', {

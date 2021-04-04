@@ -7,7 +7,7 @@ function Artist() {
 	const [top5, setTop5] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:4000/artists')
+		fetch(`http://localhost:4000/artists`)
 			.then((res) => res.json())
 			.then((data) => {
 				// Set artists and set the top 5 artists
