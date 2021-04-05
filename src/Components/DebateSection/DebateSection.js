@@ -16,15 +16,15 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
 	//------------------DELETE DEBATE-------------------------------------
 	const deleteDebate = (debateID) => {
 		axios
-			.delete(`http://localhost:4000/artists/${artistID}/${debateID}`, {
-				headers: {
-					Authorization: 'Bearer ' + token,
-				},
-			})
-			.then((res) => {
-				refreshDebates(res.data.debates);
-			})
-			.catch(console.error);
+      .delete(`https://goat5.herokuapp.com/artists/${artistID}/${debateID}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        refreshDebates(res.data.debates);
+      })
+      .catch(console.error);
 	};
 
 	//-------------------END DELETE DEBATE-------------------------------------
@@ -44,19 +44,19 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
 
 	const submitEditedDebate = (debateID) => {
 		axios
-			.patch(
-				`http://localhost:4000/artists/${artistID}/${debateID}`,
-				{
-					debate: editedDebate,
-				},
-				{
-					headers: {
-						Authorization: 'Bearer ' + token,
-					},
-				}
-			)
-			.then((res) => refreshDebates(res.data.artist.debates))
-			.catch(console.error);
+      .patch(
+        `https://goat5.herokuapp.com/artists/${artistID}/${debateID}`,
+        {
+          debate: editedDebate,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => refreshDebates(res.data.artist.debates))
+      .catch(console.error);
 		setEditedDebate('');
 	};
 

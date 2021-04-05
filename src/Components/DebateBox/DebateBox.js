@@ -13,22 +13,22 @@ const DebateForm = ({ refreshDebates, token }) => {
 	const submitDebate = (event) => {
 		event.preventDefault();
 		axios
-			.post(
-				`http://localhost:4000/artists/${id}`,
-				{
-					debate: debate,
-					artistID: id,
-				},
-				{
-					headers: {
-						Authorization: 'Bearer ' + token,
-					},
-				}
-			)
-			.then((res) => {
-				refreshDebates(res.data.artist.debates);
-			})
-			.catch(console.error);
+      .post(
+        `https://goat5.herokuapp.com/artists/${id}`,
+        {
+          debate: debate,
+          artistID: id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        refreshDebates(res.data.artist.debates);
+      })
+      .catch(console.error);
 		setDebate('');
 	};
 
