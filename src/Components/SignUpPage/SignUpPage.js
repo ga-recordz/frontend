@@ -4,6 +4,7 @@ import axios from 'axios';
 import SignOutPage from '../SignOutPage/SignOutPage';
 import "./SignUpPage.css"
 import { GoogleLogin } from "react-google-login";
+import APIurl from "../../config.js";
 
 const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const [userName, setUserName] = useState("");
@@ -11,10 +12,11 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
     const [password, setPassword] = useState("");
 
 	const responseGoogle = (response) => {
+    console.log(response)
     setToken(response.accessToken);
 	setPassword(response.googleId);
     axios
-      .post("https://goat-5-rappers.herokuapp.com/signup", {
+      .post(`${APIurl}/signup`, {
         email: response.profileObj.email,
         userName: response.profileObj.givenName,
         password: response.googleId,
@@ -26,7 +28,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
       })
       .then((user) => {
         axios
-          .post(`https://goat-5-rappers.herokuapp.com/signin`, {
+          .post(`${APIurl}/signin`, {
             email: response.profileObj.email,
             password: response.googleId,
           })
@@ -34,7 +36,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
             console.log(res);
             setToken(res.data.token);
           });
-      });
+      }).catch(err => console.log(err))
   };
 
 
@@ -54,7 +56,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
-      .post(`https://goat-5-rappers.herokuapp.com/signup`, {
+      .post(`${APIurl}/signup`, {
         email: email,
         password: password,
         userName: userName,
@@ -65,7 +67,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
       }) //Sign in the user
       .then((user) => {
         axios
-          .post(`https://goat-5-rappers.herokuapp.com/signin`, {
+          .post(`h${APIurl}/signin`, {
             email: user.email,
             password: password,
           })

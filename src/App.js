@@ -1,20 +1,23 @@
-import './App.css';
-import React, { useState } from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import { Route, Switch } from 'react-router-dom';
-import ArtistDetail from './Components/ArtistDetail/ArtistDetail';
-import Artist from './Components/Artist/Artist';
-import Home from './Components/Home/Home';
-import SignUpPage from './Components/SignUpPage/SignUpPage';
-import SignOutPage from './Components/SignOutPage/SignOutPage';
-import SignIn from './Components/SignIn/SignIn';
-import UserProfile from './Components/UserProfile/UserProfile';
+import "./App.css";
+import React, { useState } from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import { Route, Switch } from "react-router-dom";
+import ArtistDetail from "./Components/ArtistDetail/ArtistDetail";
+import Artist from "./Components/Artist/Artist";
+import Home from "./Components/Home/Home";
+import SignUpPage from "./Components/SignUpPage/SignUpPage";
+import SignOutPage from "./Components/SignOutPage/SignOutPage";
+import SignIn from "./Components/SignIn/SignIn";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import APIurl from "./config.js";
 
 function App() {
-	const [user, setUser] = useState(null);
-	const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-	return (
+  console.log(APIurl);
+
+  return (
     <div className="App1">
       <div className="Main">
         <Navbar token={token} user={user} />

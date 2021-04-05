@@ -1,13 +1,14 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import APIurl from "../../config.js";
 
 function Artist() {
-	const [artists, setArtists] = useState([]);
-	const [top5, setTop5] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [top5, setTop5] = useState([]);
 
-	useEffect(() => {
-		fetch(`https://goat-5-rappers.herokuapp.com/artists`)
+  useEffect(() => {
+    fetch(`${APIurl}/artists`)
       .then((res) => res.json())
       .then((data) => {
         // Set artists and set the top 5 artists
@@ -36,41 +37,41 @@ function Artist() {
         // setArtists(randomArtists);
         setArtists(data);
       });
-	}, []);
+  }, []);
 
-	return (
-		<div>
-			<h1>Artists</h1>
-			<div className='container'>
-				{artists.map((artist) => {
-					return (
-						<div key={artist.artist} className='artistCard'>
-							<Link to={`/artists/${artist._id}`} key={artist._id}>
-								<div className='card'>
-									<div className='card-image'>
-										<img src={artist.photo} alt={`${artist.artist}`} />
-										<h3>{artist.artist}</h3>
-										<div className='microphoneIcon'>
-											<img
-												src='https://img.icons8.com/emoji/48/000000/microphone-emoji.png'
-												alt='microphone to like'
-											/>
-											<p>Likes: {artist.likes.length}</p>
-											<p>Record label: {artist.recordLabel}</p>
-											<div>
-												Years Active: {artist.yearsActive}
-												<p>Genre: {artist.genre}</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</Link>
-						</div>
-					);
-				})}
-			</div>
-		</div>
-	);
+  return (
+    <div>
+      <h1>Artists</h1>
+      <div className="container">
+        {artists.map((artist) => {
+          return (
+            <div key={artist.artist} className="artistCard">
+              <Link to={`/artists/${artist._id}`} key={artist._id}>
+                <div className="card">
+                  <div className="card-image">
+                    <img src={artist.photo} alt={`${artist.artist}`} />
+                    <h3>{artist.artist}</h3>
+                    <div className="microphoneIcon">
+                      <img
+                        src="https://img.icons8.com/emoji/48/000000/microphone-emoji.png"
+                        alt="microphone to like"
+                      />
+                      <p>Likes: {artist.likes.length}</p>
+                      <p>Record label: {artist.recordLabel}</p>
+                      <div>
+                        Years Active: {artist.yearsActive}
+                        <p>Genre: {artist.genre}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default Artist;

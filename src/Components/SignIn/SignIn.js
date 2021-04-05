@@ -3,15 +3,15 @@ import axios from "axios";
 import { Redirect } from "react-router";
 import "./SignIn.css";
 import { GoogleLogin } from "react-google-login";
+import APIurl from "../../config.js";
 
 const SignIn = ({ setToken, setUser, token, user }) => {
   const responseGoogle = (response) => {
-    fetch(
-      `https://goat-5-rappers.herokuapp.com/thirdPartyUser/${response.googleId}`
-    )
+    console.log(response);
+    fetch(`${APIurl}/thirdPartyUser/${response.googleId}`)
       .then((res) => res.json())
       .then((res) =>
-        axios.post("https://goat-5-rappers.herokuapp.com/signin", {
+        axios.post(`${APIurl}/signin`, {
           email: res.email,
           password: res.thirdPartyId,
         })
@@ -37,7 +37,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
   const signInUser = (event) => {
     event.preventDefault();
     axios
-      .post(`https://goat-5-rappers.herokuapp.com/signin`, {
+      .post(`${APIurl}/signin`, {
         email: email,
         password: password,
       })
@@ -45,7 +45,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
         setToken(tokenData.data.token);
 
         //Get USER
-        fetch(`https://goat-5-rappers.herokuapp.com/${tokenData.data.user._id}`)
+        fetch(`${APIurl}/${tokenData.data.user._id}`)
           .then((res) => res.json())
           .then((user) => {
             setUser(user);
@@ -60,9 +60,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
       <div className="login">
         <h1>Sign In</h1>
         <form>
-          <b>
-          E-mail:
-          </b>
+          <b>E-mail:</b>
           <br />
           <input
             type="text"
@@ -71,9 +69,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
             onChange={changeEmail}
           />
           <br />
-          <b>
-          Password:
-          </b>
+          <b>Password:</b>
           <br />
           <input
             type="text"

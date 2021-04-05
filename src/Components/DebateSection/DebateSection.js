@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "./DebateSection.css";
+import APIurl from "../../config.js"
 
 function DebateSection({ debates, refreshDebates, artistID, token }) {
   const [editedDebate, setEditedDebate] = useState("");
@@ -16,7 +17,7 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
   //------------------DELETE DEBATE-------------------------------------
   const deleteDebate = (debateID) => {
     axios
-      .delete(`https://goat-5-rappers.herokuapp.com/${artistID}/${debateID}`, {
+      .delete(`${APIurl}/artists/${artistID}/${debateID}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -45,7 +46,7 @@ function DebateSection({ debates, refreshDebates, artistID, token }) {
   const submitEditedDebate = (debateID) => {
     axios
       .patch(
-        `https://goat-5-rappers.herokuapp.com/${artistID}/${debateID}`,
+        `${APIurl}/artists/${artistID}/${debateID}`,
         {
           debate: editedDebate,
         },

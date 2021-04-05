@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './Top5.css';
+import React, { useState, useEffect } from "react";
+import "./Top5.css";
+import APIurl from "../../config.js"
 
 function Top5() {
-	const [artists, setArtists] = useState([]);
-	const [top5, setTop5] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [top5, setTop5] = useState([]);
 
-	useEffect(() => {
-		fetch(`https://goat-5-rappers.herokuapp.com/artists`)
+  useEffect(() => {
+    fetch(`${APIurl}/artists`)
       .then((res) => res.json())
       .then((data) => {
         //Set artists and set the top 5 artists
@@ -31,29 +32,29 @@ function Top5() {
         });
         setArtists(randomArtists);
       });
-	}, []);
-	let rank = 1;
+  }, []);
+  let rank = 1;
 
-	return (
-		<>
-			<h1 className='top5'>Top 5</h1>
-			<div className='allTop5'>
-				{top5 ? (
-					top5.map((artist) => {
-						return (
-							<div className='top5Artist' key={artist.artist}>
-								<h2>{`${rank++}.)`}</h2>
-								<h3>{artist.artist}</h3>
-								<div>{artist.likes.length}</div>
-							</div>
-						);
-					})
-				) : (
-					<h1>Loading...</h1>
-				)}
-			</div>
-		</>
-	);
+  return (
+    <>
+      <h1 className="top5">Top 5</h1>
+      <div className="allTop5">
+        {top5 ? (
+          top5.map((artist) => {
+            return (
+              <div className="top5Artist" key={artist.artist}>
+                <h2>{`${rank++}.)`}</h2>
+                <h3>{artist.artist}</h3>
+                <div>{artist.likes.length}</div>
+              </div>
+            );
+          })
+        ) : (
+          <h1>Loading...</h1>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default Top5;
