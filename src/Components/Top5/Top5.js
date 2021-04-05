@@ -6,7 +6,7 @@ function Top5() {
 	const [top5, setTop5] = useState([]);
 
 	useEffect(() => {
-		fetch(`https://goat5.herokuapp.com/artists`)
+		fetch(`https://goat-5-rappers.herokuapp.com/artists`)
       .then((res) => res.json())
       .then((data) => {
         //Set artists and set the top 5 artists

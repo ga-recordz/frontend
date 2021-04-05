@@ -11,7 +11,7 @@ const ArtistDetail = ({ match, token }) => {
 	useEffect(() => {
 		const id = match.params.id;
 
-		fetch(`https://goat5.herokuapp.com/artists/${id}`)
+		fetch(`https://goat-5-rappers.herokuapp.com/artists/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setArtist(res);

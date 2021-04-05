@@ -14,7 +14,7 @@ const DebateForm = ({ refreshDebates, token }) => {
 		event.preventDefault();
 		axios
       .post(
-        `https://goat5.herokuapp.com/artists/${id}`,
+        `https://goat-5-rappers.herokuapp.com/${id}`,
         {
           debate: debate,
           artistID: id,

@@ -6,10 +6,12 @@ import { GoogleLogin } from "react-google-login";
 
 const SignIn = ({ setToken, setUser, token, user }) => {
   const responseGoogle = (response) => {
-    fetch(`https://goat5.herokuapp.com/thirdPartyUser/${response.googleId}`)
+    fetch(
+      `https://goat-5-rappers.herokuapp.com/thirdPartyUser/${response.googleId}`
+    )
       .then((res) => res.json())
       .then((res) =>
-        axios.post("https://goat5.herokuapp.com/signin", {
+        axios.post("https://goat-5-rappers.herokuapp.com/signin", {
           email: res.email,
           password: res.thirdPartyId,
         })
@@ -35,7 +37,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
   const signInUser = (event) => {
     event.preventDefault();
     axios
-      .post(`https://goat5.herokuapp.com/signin`, {
+      .post(`https://goat-5-rappers.herokuapp.com/signin`, {
         email: email,
         password: password,
       })
@@ -43,7 +45,7 @@ const SignIn = ({ setToken, setUser, token, user }) => {
         setToken(tokenData.data.token);
 
         //Get USER
-        fetch(`https://goat5.herokuapp.com/user/${tokenData.data.user._id}`)
+        fetch(`https://goat-5-rappers.herokuapp.com/${tokenData.data.user._id}`)
           .then((res) => res.json())
           .then((user) => {
             setUser(user);
@@ -58,20 +60,34 @@ const SignIn = ({ setToken, setUser, token, user }) => {
       <div className="login">
         <h1>Sign In</h1>
         <form>
+          <b>
           E-mail:
+          </b>
           <br />
-          <input type="text" name="email" onChange={changeEmail} />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={changeEmail}
+          />
           <br />
+          <b>
           Password:
+          </b>
           <br />
-          <input type="text" name="password" onChange={changePassword} />
+          <input
+            type="text"
+            name="password"
+            placeholder="Password"
+            onChange={changePassword}
+          />
           <br />
           <button onClick={(event) => signInUser(event)}>Sign In!</button>
         </form>
         <br />
         <GoogleLogin
           clientId="184291515705-c3ggom9enl876ulgg8r07qqmnpto9uqr.apps.googleusercontent.com"
-          buttonText="Continue with the Googs"
+          buttonText="Continue with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
