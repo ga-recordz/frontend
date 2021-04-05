@@ -14,7 +14,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
     setToken(response.accessToken);
 	setPassword(response.googleId);
     axios
-      .post("hhttps://goat-5-rappers.herokuapp.com/signup", {
+      .post("https://goat-5-rappers.herokuapp.com/signup", {
         email: response.profileObj.email,
         userName: response.profileObj.givenName,
         password: response.googleId,
