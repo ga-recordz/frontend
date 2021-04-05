@@ -96,7 +96,7 @@ a:active {
 .home-container {
 	text-align: center;
 	padding: 10px 50px;
-	background-image: linear-gradient(to top, #908F94 0%, #191085 100%);
+	background-image: linear-gradient(to top, #191085 100% #908F94 0%,);
 	height: 90.5vh;
 	/* height: 300%; */
 
