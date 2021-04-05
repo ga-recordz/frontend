@@ -11,12 +11,12 @@ const ArtistDetail = ({ match, token }) => {
 	useEffect(() => {
 		const id = match.params.id;
 
-		fetch(`http://localhost:4000/artists/${id}`)
-			.then((res) => res.json())
-			.then((res) => {
-				setArtist(res);
-				setDebates(res.debates);
-			});
+		fetch(`https://goat5.herokuapp.com/artists/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setArtist(res);
+        setDebates(res.debates);
+      });
 	}, []);
 
 	const refreshDebates = (newDebates) => {

@@ -14,19 +14,19 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
     setToken(response.accessToken);
 	setPassword(response.googleId);
     axios
-      .post("http://localhost:4000/signup", {
+      .post("https://goat5.herokuapp.com/signup", {
         email: response.profileObj.email,
         userName: response.profileObj.givenName,
         password: response.googleId,
-		thirdPartyId: response.googleId
+        thirdPartyId: response.googleId,
       })
       .then((res) => {
         setUser(res.data);
-		return res.data
+        return res.data;
       })
       .then((user) => {
         axios
-          .post(`http://localhost:4000/signin`, {
+          .post(`https://goat5.herokuapp.com/signin`, {
             email: response.profileObj.email,
             password: response.googleId,
           })
@@ -54,25 +54,25 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
-			.post(`http://localhost:4000/signup`, {
-				email: email,
-				password: password,
-				userName: userName,
-			})
-			.then((user) => {
-				setUser(user.data);
-				return user.data;
-			}) //Sign in the user
-			.then((user) => {
-				axios
-					.post(`http://localhost:4000/signin`, {
-						email: user.email,
-						password: password,
-					})
-					.then((res) => {
-						setToken(res.data.token);
-					});
-			});
+      .post(`https://goat5.herokuapp.com/signup`, {
+        email: email,
+        password: password,
+        userName: userName,
+      })
+      .then((user) => {
+        setUser(user.data);
+        return user.data;
+      }) //Sign in the user
+      .then((user) => {
+        axios
+          .post(`https://goat5.herokuapp.com/signin`, {
+            email: user.email,
+            password: password,
+          })
+          .then((res) => {
+            setToken(res.data.token);
+          });
+      });
 	};
 
 	if (token) {
