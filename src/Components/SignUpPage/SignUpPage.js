@@ -67,7 +67,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
       }) //Sign in the user
       .then((user) => {
         axios
-          .post(`h${APIurl}/signin`, {
+          .post(`${APIurl}/signin`, {
             email: user.email,
             password: password,
           })
