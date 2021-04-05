@@ -14,7 +14,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
     setToken(response.accessToken);
 	setPassword(response.googleId);
     axios
-      .post("https://goat5.herokuapp.com/signup", {
+      .post("hhttps://goat-5-rappers.herokuapp.com/signup", {
         email: response.profileObj.email,
         userName: response.profileObj.givenName,
         password: response.googleId,
@@ -26,7 +26,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
       })
       .then((user) => {
         axios
-          .post(`https://goat5.herokuapp.com/signin`, {
+          .post(`https://goat-5-rappers.herokuapp.com/signin`, {
             email: response.profileObj.email,
             password: response.googleId,
           })
@@ -54,7 +54,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
 	const signUpUser = (event) => {
 		event.preventDefault();
 		axios
-      .post(`https://goat5.herokuapp.com/signup`, {
+      .post(`https://goat-5-rappers.herokuapp.com/signup`, {
         email: email,
         password: password,
         userName: userName,
@@ -65,7 +65,7 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
       }) //Sign in the user
       .then((user) => {
         axios
-          .post(`https://goat5.herokuapp.com/signin`, {
+          .post(`https://goat-5-rappers.herokuapp.com/signin`, {
             email: user.email,
             password: password,
           })
@@ -128,9 +128,10 @@ const SignUpPage = ({ user, setUser, token, setToken }) => {
             </Link>
           </div>
         </form>
+        <br/>
         <GoogleLogin
           clientId="184291515705-c3ggom9enl876ulgg8r07qqmnpto9uqr.apps.googleusercontent.com"
-          buttonText="Continue with the Googs"
+          buttonText="Continue with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
